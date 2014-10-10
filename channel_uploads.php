@@ -45,7 +45,7 @@ foreach ($uploads as $upload) {
             . '</td></tr></table>';
 
     $item = $feed->channel->addChild('item');
-    $item->addChild('title', urlencode($itemTitle));
+    $item->addChild('title', $itemTitle);
     $item->addChild('link', $itemUrl);
     $descriptionChild = $item->addChild('description');
     $descriptionChild->addCData($itemText);
