@@ -22,3 +22,9 @@ function youtube_get_uploads_for_playlist($playlistId) {
     $data = json_decode($response, true);
     return $data['items'];
 }
+
+function xml_entities($string) {
+    return str_replace(
+            array("&", "<", ">", '"', "'"), array("&amp;", "&lt;", "&gt;", "&quot;", "&apos;"), $string
+    );
+}
