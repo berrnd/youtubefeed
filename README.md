@@ -14,9 +14,9 @@ Any webserver with PHP
 
 ## Installation
 Just unpack on your webserver subscribe to a channel like so:
-`http://<your-install-path>/channel_uploads.php?name=https://www.youtube.com/<channel-name>`
+`http://<your-install-path>/?channel-name=Google`
 or (for channels without a username)
-`http://<your-install-path>/channel_uploads.php?id=https://www.youtube.com/channel/<channel-id>`
+`http://<your-install-path>/?channel-id=UCK8sQmJBp8GCxrOtXWBpyEA`
 
 #### YouTube Data API Key
 - Create a new Google API project: [https://console.developers.google.com](https://console.developers.google.com)

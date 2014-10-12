@@ -1,21 +1,21 @@
 <?php
 
-if (empty($_GET['name']) && empty($_GET['id'])) {
+if (empty($_GET['channel-name']) && empty($_GET['channel-id'])) {
     header('HTTP/1.0 404 Not Found');
     exit();
 }
 
 require_once 'SimpleXMLElementEx.php';
-require_once 'functions_youtube.php';
+require_once 'youtubefeed.php';
 
-if (!empty($_GET['name'])) {
-    $channelName = urldecode($_GET['name']);
+if (!empty($_GET['channel-name'])) {
+    $channelName = urldecode($_GET['channel-name']);
     $channel = youtube_get_channel_by_name($channelName);
     $channelId = $channel['id'];
 }
 
-if (!empty($_GET['id'])) {
-    $channelId = urldecode($_GET['id']);
+if (!empty($_GET['channel-id'])) {
+    $channelId = urldecode($_GET['channel-id']);
     $channel = youtube_get_channel_by_id($channelId);
 }
 
@@ -25,7 +25,7 @@ $uploads = youtube_get_uploads_for_playlist($uploadPlaylistId);
 
 $feed = new SimpleXMLElementEx('<rss version="2.0"></rss>');
 $feed->addChild('channel');
-$feed->channel->addChild('title', 'YouTube uploads by ' . $channelName);
+$feed->channel->addChild('title', 'YouTube uploads by ' . xml_entities($channelName));
 $feed->channel->addChild('link', 'https://www.youtube.com/channel/' . $channelId . '/videos');
 $imageItem = $feed->channel->addChild('image');
 $imageItem->addChild('url', 'https://www.youtube.com/favicon.ico');
