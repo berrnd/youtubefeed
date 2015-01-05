@@ -38,10 +38,10 @@ foreach ($uploads as $upload) {
     $uploadId = $upload['snippet']['resourceId']['videoId'];
     $itemUrl = 'https://www.youtube.com/watch?v=' . $uploadId;
 
-    $itemText = '<table><tr><td><a href="' . $itemUrl . '"><img src="'
-            . $upload['snippet']['thumbnails']['high']['url']
+    $itemText = '<table><tr><td><a href="' . $itemUrl . '"><img width=320" height="180" src="'
+            . $upload['snippet']['thumbnails']['medium']['url']
             . '" /></a></td><td>'
-            . htmlentities($upload['snippet']['description'])
+            . nl2br(htmlentities($upload['snippet']['description']))
             . '</td></tr></table>';
 
     $item = $feed->channel->addChild('item');
