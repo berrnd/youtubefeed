@@ -31,11 +31,15 @@ $imageItem = $feed->channel->addChild('image');
 $imageItem->addChild('url', 'https://www.youtube.com/favicon.ico');
 
 foreach ($uploads as $upload) {
-    $itemTitle = $upload['snippet']['title'];
+    $uploadId = $upload['snippet']['resourceId']['videoId'];
+    $video = youtube_get_video($uploadId);
+
+    $durationIso8601 = new DateInterval($video['contentDetails']['duration']);
+    $duration = $durationIso8601->format('%I:%S');
+
+    $itemTitle = $upload['snippet']['title'] . ' [' . $duration . ']';
     $itemDate = date(DATE_RSS, strtotime($upload['snippet']['publishedAt']));
     $itemAuthor = $upload['snippet']['channelTitle'];
-
-    $uploadId = $upload['snippet']['resourceId']['videoId'];
     $itemUrl = 'https://www.youtube.com/watch?v=' . $uploadId;
 
     $itemText = '<table><tr><td><a href="' . $itemUrl . '"><img width=320" height="180" src="'

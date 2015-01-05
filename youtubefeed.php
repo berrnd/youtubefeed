@@ -30,6 +30,16 @@ function youtube_get_uploads_for_playlist($playlistId) {
     return $data['items'];
 }
 
+function youtube_get_video($videoId) {
+    $cache = new Gilbitron\Util\SimpleCache();
+    $cache->cache_time = 4838400; //8 weeks
+
+    $url = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' . $videoId . '&key=' . YOUTUBE_API_KEY;
+    $response = $cache->get_data("youtube_get_video_$videoId", $url);
+    $data = json_decode($response, true);
+    return $data['items'][0];
+}
+
 function xml_entities($string) {
     return str_replace(
             array("&", "<", ">", '"', "'"), array("&amp;", "&lt;", "&gt;", "&quot;", "&apos;"), $string
