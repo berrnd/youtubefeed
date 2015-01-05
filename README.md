@@ -22,6 +22,7 @@ or (for channels without a username)
 - Create a new Google API project: [https://console.developers.google.com](https://console.developers.google.com)
 - Under "APIs & auth/APIs" enable "YouTube Data API v3"
 - Under "APIs & auth/Credentials" create a new "Server key"
+- Copy config-dist.php to config.php
 - Put that key in config.php
 
 #### License
